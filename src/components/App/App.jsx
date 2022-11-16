@@ -39,14 +39,14 @@ export class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const filterContacts = this.getFilterContacts();
 
     return (
       <Section>
         <Title>Phonebook</Title>
         <FormContact onSubmitHandle={this.formSubmitHandler} />
-        {filterContacts.length > 0 && (
+        {contacts.length > 0 && (
           <>
             <SubTitle>Contacts</SubTitle>
             <Filter value={filter} onChange={this.changeFilter} />
@@ -59,7 +59,13 @@ export class App extends Component {
             onClickDelete={this.removeContact}
           />
         ) : (
-          <Notification message="Your phonebook is empty" />
+          <Notification
+            message={
+              contacts.length > 0
+                ? 'There is no match'
+                : 'Your phonebook is empty'
+            }
+          />
         )}
       </Section>
     );
