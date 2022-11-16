@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import {} from './Filter.styled';
 import { nanoid } from 'nanoid';
 import { InputCustom } from 'components/InputCustom/InputCustom';
 
