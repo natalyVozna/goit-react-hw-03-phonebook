@@ -1,5 +1,4 @@
 import { ContactList, ContactItem, Info } from './Contacts.styled';
-import { Section } from '../Section/Section';
 import PropTypes from 'prop-types';
 
 export const Contacts = ({ contacts }) => {
