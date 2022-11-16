@@ -4,7 +4,7 @@ import { InputCustom } from 'components/InputCustom/InputCustom';
 
 export const Filter = ({ value, onChange }) => {
   const fildStyle = {
-    'min-width': '50%',
+    minWidth: '50%',
   };
   const inputId = nanoid();
 

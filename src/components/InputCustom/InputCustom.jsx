@@ -37,8 +37,8 @@ InputCustom.propTypes = {
   value: PropTypes.string,
   required: PropTypes.bool,
   pattern: PropTypes.string,
-  fildStyle: PropTypes.string,
+  fildStyle: PropTypes.shape({}),
   title: PropTypes.string,
-  inputStyle: PropTypes.string,
+  inputStyle: PropTypes.shape({}),
   handleChangeInput: PropTypes.func.isRequired,
 };

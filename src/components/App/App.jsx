@@ -5,6 +5,7 @@ import { FormContact } from 'components/FormContact/FormContact';
 import { Contacts } from 'components/Contacts/Contacts';
 import { Filter } from 'components/Filter/Filter';
 import { Title, SubTitle } from './App.styled';
+import { Notification } from 'components/Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -31,6 +32,12 @@ export class App extends Component {
     this.setState({ filter: e.currentTarget.value });
   };
 
+  removeContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   render() {
     const { filter } = this.state;
     const filterContacts = this.getFilterContacts();
@@ -39,9 +46,21 @@ export class App extends Component {
       <Section>
         <Title>Phonebook</Title>
         <FormContact onSubmitHandle={this.formSubmitHandler} />
-        <SubTitle>Contacts</SubTitle>
-        <Filter value={filter} onChange={this.changeFilter} />
-        {filterContacts.length > 0 && <Contacts contacts={filterContacts} />}
+        {filterContacts.length > 0 && (
+          <>
+            <SubTitle>Contacts</SubTitle>
+            <Filter value={filter} onChange={this.changeFilter} />
+          </>
+        )}
+
+        {filterContacts.length > 0 ? (
+          <Contacts
+            contacts={filterContacts}
+            onClickDelete={this.removeContact}
+          />
+        ) : (
+          <Notification message="Your phonebook is empty" />
+        )}
       </Section>
     );
   }
