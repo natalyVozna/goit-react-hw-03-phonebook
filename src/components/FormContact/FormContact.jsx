@@ -1,7 +1,7 @@
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 import { InputStyled, LabelInput, Field, Form } from './FormContact.styled';
 import { Button } from 'components/Button/Button';
-import { nanoid } from 'nanoid';
 
 const INITIAL_STATE = {
   name: '',

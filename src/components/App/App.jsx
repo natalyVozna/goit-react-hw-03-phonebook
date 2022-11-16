@@ -44,7 +44,7 @@ export class App extends Component {
       <Section>
         <Title>Phonebook</Title>
         <FormContact onSubmitHandle={this.formSubmitHandler} />
-        {filterContacts.length > 0 && <SubTitle>Contacts</SubTitle>}
+        <SubTitle>Contacts</SubTitle>
         <Filter value={filter} onChange={this.changeFilter} />
         {filterContacts.length > 0 && <Contacts contacts={filterContacts} />}
       </Section>
