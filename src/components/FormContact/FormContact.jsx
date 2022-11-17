@@ -35,6 +35,11 @@ export class FormContact extends Component {
   };
 
   render() {
+    const initialValues = {
+      name: '',
+      number: '',
+    };
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <Field>

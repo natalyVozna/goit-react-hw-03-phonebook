@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { Notify } from 'notiflix';
 import { Section } from '../Section/Section';
 import { FormContact } from 'components/FormContact/FormContact';
+import { FormikContact } from 'components/FormikContact/FormikContact';
 import { Contacts } from 'components/Contacts/Contacts';
 import { Filter } from 'components/Filter/Filter';
 import { Title, SubTitle } from './App.styled';
@@ -58,7 +59,8 @@ export class App extends Component {
     return (
       <Section>
         <Title>Phonebook</Title>
-        <FormContact onSubmitHandle={this.addContact} />
+        {/* <FormContact onSubmitHandle={this.addContact} /> */}
+        <FormikContact onSubmitHandle={this.addContact} />
         {contacts.length > 0 && (
           <>
             <SubTitle>Contacts</SubTitle>
