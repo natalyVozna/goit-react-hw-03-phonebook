@@ -47,6 +47,8 @@ export class App extends Component {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
+
+    Notify.failure('Contact deleted');
   };
 
   render() {
