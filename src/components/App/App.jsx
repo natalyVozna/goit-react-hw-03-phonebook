@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix';
 import { Section } from '../Section/Section';
 import { FormContact } from 'components/FormContact/FormContact';
 import { Contacts } from 'components/Contacts/Contacts';
@@ -13,10 +14,20 @@ export class App extends Component {
     filter: '',
   };
 
-  formSubmitHandler = data => {
-    this.setState(({ contacts }) => ({
-      contacts: [{ ...data, id: nanoid() }, ...contacts],
-    }));
+  addContact = data => {
+    const isName = this.state.contacts.some(
+      contact => contact.name.toLowerCase() === data.name.toLowerCase()
+    );
+    if (!isName) {
+      this.setState(({ contacts }) => {
+        return { contacts: [{ ...data, id: nanoid() }, ...contacts] };
+      });
+    } else {
+      Notify.warning('You already have this contact');
+    }
+    // this.setState(({ contacts }) => ({
+    //   contacts: [{ ...data, id: nanoid() }, ...contacts],
+    // }));
   };
 
   getFilterContacts = () => {
@@ -45,7 +56,7 @@ export class App extends Component {
     return (
       <Section>
         <Title>Phonebook</Title>
-        <FormContact onSubmitHandle={this.formSubmitHandler} />
+        <FormContact onSubmitHandle={this.addContact} />
         {contacts.length > 0 && (
           <>
             <SubTitle>Contacts</SubTitle>
