@@ -11,7 +11,12 @@ import { Notification } from 'components/Notification/Notification';
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: '',
   };
 
@@ -52,6 +57,24 @@ export class App extends Component {
     Notify.failure('Contact deleted');
   };
 
+  componentDidMount() {
+    console.log('componentDidMount', this.state.contacts);
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpda');
+    console.log('componentDidUpda', this.state.contacts, prevState.contacts);
+    const { contacts } = this.state;
+    if (contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
   render() {
     const { filter, contacts } = this.state;
     const filterContacts = this.getFilterContacts();
@@ -59,8 +82,8 @@ export class App extends Component {
     return (
       <Section>
         <Title>Phonebook</Title>
-        {/* <FormContact onSubmitHandle={this.addContact} /> */}
-        <FormikContact onSubmitHandle={this.addContact} />
+        <FormContact onSubmitHandle={this.addContact} />
+        {/* <FormikContact onSubmitHandle={this.addContact} /> */}
         {contacts.length > 0 && (
           <>
             <SubTitle>Contacts</SubTitle>
